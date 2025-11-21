@@ -125,9 +125,14 @@
     <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-white/70 dark:bg-library-darker/70 border-b border-gray-200 dark:border-white/10" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <i data-lucide="book-open" class="h-8 w-8 text-library-gold"></i>
-                    <span class="font-display font-bold text-xl tracking-wider">Clube EEPJP</span>
+                <div class="flex items-center gap-3 group">
+                    <!-- LOGO DO CLUBE -->
+                    <!-- IMPORTANTE: Renomeie o arquivo da sua logo para "logo.png" e coloque na mesma pasta deste arquivo -->
+                    <img src="./logo.png" 
+                         alt="Logo Entre Páginas" 
+                         class="h-12 w-auto md:h-16 transition-transform duration-300 transform group-hover:scale-105 drop-shadow-md">
+                    
+                    <span class="font-display font-bold text-xl tracking-wider group-hover:text-library-gold transition-colors duration-300 ml-2">Clube EEPJP</span>
                 </div>
                 <div class="flex items-center gap-6">
                     <a href="#sobre" class="hidden md:block font-sans hover:text-library-gold transition-colors">O Clube</a>
