@@ -163,23 +163,21 @@
 
         <!-- Conteúdo Hero -->
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-8 reveal active">
-            <!-- LOGO PRINCIPAL -->
-            <div class="flex justify-center mb-8">
-                <img src="./logo.png" 
-                     alt="Logo Clube do Livro Entre Páginas" 
-                     class="h-32 w-auto md:h-48 transition-transform duration-700 transform hover:scale-105 drop-shadow-xl">
+            <!-- Marca d'água da Logo no Fundo -->
+            <div class="absolute inset-0 z-0 opacity-[0.08] dark:opacity-[0.05] pointer-events-none"
+                 style="background-image: url('./logo.png'); background-position: center; background-size: 70%; background-repeat: no-repeat;">
             </div>
 
-            <div class="inline-block border border-library-gold/50 px-4 py-1 rounded-full text-sm font-sans tracking-[0.2em] text-library-gold mb-4 backdrop-blur-sm">
+            <div class="relative z-10 inline-block border border-library-gold/50 px-4 py-1 rounded-full text-sm font-sans tracking-[0.2em] text-library-gold mb-4 backdrop-blur-sm">
                 ESCOLA ESTADUAL PROFESSOR JOÃO PINHEIRO
             </div>
-            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-2xl">
+            <h1 class="relative z-10 font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-2xl">
                 Explore Novos<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-library-gold to-yellow-200">Mundos</span>
             </h1>
-            <p class="font-serif text-lg md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto italic">
+            <p class="relative z-10 font-serif text-lg md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto italic">
                 "Um livro é um sonho que você segura na mão."
             </p>
-            <div class="pt-8">
+            <div class="pt-8 relative z-10">
                 <a href="#leituras" class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-library-gold transition duration-300 ease-out border-2 border-library-gold rounded-full shadow-md">
                     <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-library-gold group-hover:translate-x-0 ease">
                         <i data-lucide="arrow-down" class="w-6 h-6"></i>
