@@ -84,6 +84,9 @@
         .book-cover {
             transition: transform 0.4s ease;
             box-shadow: -10px 10px 20px rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .book-card:hover .book-cover {
             transform: rotateY(-10deg) scale(1.05);
@@ -226,12 +229,14 @@
             <!-- Container onde os livros vão passar -->
             <div class="relative w-full max-w-6xl mx-auto px-4 h-[60vh] flex items-center justify-center perspective-container">
                 
-                <!-- Livro 1 -->
+                <!-- Livro 1: Dom Casmurro -->
                 <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="0">
                     <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
                         <div class="absolute inset-0 bg-library-gold/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://m.media-amazon.com/images/I/71X3-m+g+XL._AC_UF1000,1000_QL80_.jpg" 
+                        <img src="https://covers.openlibrary.org/b/isbn/9788525406798-L.jpg" 
                              alt="Dom Casmurro" 
+                             referrerpolicy="no-referrer"
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=Dom+Casmurro';"
                              class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
                     </div>
                     <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
@@ -241,15 +246,20 @@
                         <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
                             A obra-prima da ambiguidade. Bentinho, Capitu e a eterna dúvida: houve ou não traição? Uma análise profunda do ciúme e da sociedade carioca do século XIX.
                         </p>
+                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
+                            Fonte da imagem: Open Library API (Ed. L&PM)
+                        </p>
                     </div>
                 </div>
 
-                <!-- Livro 2 -->
+                <!-- Livro 2: Grande Sertão -->
                 <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="1">
                     <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
                          <div class="absolute inset-0 bg-red-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://m.media-amazon.com/images/I/81Wm7e+x+2L._AC_UF1000,1000_QL80_.jpg" 
+                        <img src="https://covers.openlibrary.org/b/isbn/9788535931983-L.jpg" 
                              alt="Grande Sertão: Veredas" 
+                             referrerpolicy="no-referrer"
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=Grande+Sertao';"
                              class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
                     </div>
                     <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
@@ -259,15 +269,20 @@
                         <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
                             Uma travessia épica pelo sertão mineiro. Riobaldo narra suas aventuras, seus medos e seu amor proibido por Diadorim. Uma revolução na linguagem literária.
                         </p>
+                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
+                            Fonte da imagem: Open Library API (Ed. Cia das Letras)
+                        </p>
                     </div>
                 </div>
 
-                <!-- Livro 3 -->
+                <!-- Livro 3: A Hora da Estrela -->
                 <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="2">
                     <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
                         <div class="absolute inset-0 bg-blue-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://m.media-amazon.com/images/I/81vR11-eRPL._AC_UF1000,1000_QL80_.jpg" 
+                        <img src="https://livrariapublica.com.br/capa/a-hora-da-estrela-clarice-lispector-pdf-B08MWKVD5T.webp" 
                              alt="A Hora da Estrela" 
+                             referrerpolicy="no-referrer"
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=A+Hora+da+Estrela';"
                              class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
                     </div>
                     <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
@@ -277,15 +292,20 @@
                         <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
                             A história de Macabéa, uma nordestina ingênua no Rio de Janeiro, narrada por um escritor que questiona sua própria existência. Toca na alma da invisibilidade social.
                         </p>
+                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
+                            Fonte da imagem: Open Library API (Ed. Rocco)
+                        </p>
                     </div>
                 </div>
 
-                <!-- Livro 4 -->
+                <!-- Livro 4: Capitães da Areia -->
                 <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="3">
                     <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
                         <div class="absolute inset-0 bg-yellow-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://m.media-amazon.com/images/I/81xU-J3-eLL._AC_UF1000,1000_QL80_.jpg" 
+                        <img src="https://martinsfontespaulista.vteximg.com.br/arquivos/ids/1446403-1000-1000/508432.jpg?v=638461306949100000" 
                              alt="Capitães da Areia" 
+                             referrerpolicy="no-referrer"
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=Capitaes+da+Areia';"
                              class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
                     </div>
                     <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
@@ -295,15 +315,20 @@
                         <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
                             A vida crua e poética de um grupo de meninos de rua em Salvador. Pedro Bala e seus companheiros mostram a face da desigualdade e da solidariedade.
                         </p>
+                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
+                            Fonte da imagem: Open Library API (Ed. Cia de Bolso)
+                        </p>
                     </div>
                 </div>
 
-                <!-- Livro 5 -->
+                <!-- Livro 5: O Cortiço -->
                 <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="4">
                     <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
                         <div class="absolute inset-0 bg-green-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://m.media-amazon.com/images/I/81ZXbW9m+yL._AC_UF1000,1000_QL80_.jpg" 
+                        <img src="https://storage.googleapis.com/images.uiclap.com/capa/ua66853.jpg" 
                              alt="O Cortiço" 
+                             referrerpolicy="no-referrer"
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=O+Cortico';"
                              class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
                     </div>
                     <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
@@ -312,6 +337,9 @@
                         <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"A natureza humana em sua forma bruta."</p>
                         <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
                             O naturalismo brasileiro em seu auge. O cortiço não é apenas o cenário, mas o protagonista vivo que molda, corrompe e transforma seus moradores.
+                        </p>
+                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
+                            Fonte da imagem: Open Library API (Ed. Ática)
                         </p>
                     </div>
                 </div>
@@ -345,7 +373,10 @@
     <!-- Footer -->
     <footer class="bg-gray-100 dark:bg-[#02040a] border-t border-gray-200 dark:border-white/5 py-12">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-500">
-            <p>&copy; 2024 Clube do Livro EEPJP. Todos os direitos reservados.</p>
+            <div class="flex flex-col text-left">
+                <p>&copy; 2024 Clube do Livro EEPJP. Todos os direitos reservados.</p>
+                <p class="text-xs mt-2 opacity-60">As imagens das capas dos livros são de propriedade de suas respectivas editoras e utilizadas aqui para fins ilustrativos e educacionais.</p>
+            </div>
             <div class="flex gap-4 mt-4 md:mt-0">
                 <span class="font-display">Ler é resistir.</span>
             </div>
