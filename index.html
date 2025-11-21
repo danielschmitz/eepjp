@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clube do Livro EEPJP</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuração do Tailwind para Cores Personalizadas -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        library: {
+                            dark: '#0f172a', // Azul noite profundo
+                            darker: '#020617',
+                            paper: '#f5f5dc', // Bege papel antigo
+                            gold: '#d4af37',
+                            brown: '#3e2723',
+                            light: '#e2e8f0',
+                            accent: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        display: ['"Cinzel"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Personalizado para Efeitos Específicos */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Efeito de Ruído/Textura de Papel */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Classes para animação de scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos do Livro 3D */
+        .book-card {
+            perspective: 1000px;
+        }
+        .book-cover {
+            transition: transform 0.4s ease;
+            box-shadow: -10px 10px 20px rgba(0,0,0,0.5);
+        }
+        .book-card:hover .book-cover {
+            transform: rotateY(-10deg) scale(1.05);
+        }
+
+        /* Ocultar barra de rolagem mas permitir scroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Partículas flutuantes */
+        .particle {
+            position: absolute;
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-library-darker dark:text-library-paper overflow-x-hidden selection:bg-library-gold selection:text-white">
+
+    <!-- Efeito de textura global -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-white/70 dark:bg-library-darker/70 border-b border-gray-200 dark:border-white/10" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="book-open" class="h-8 w-8 text-library-gold"></i>
+                    <span class="font-display font-bold text-xl tracking-wider">Clube EEPJP</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="#sobre" class="hidden md:block font-sans hover:text-library-gold transition-colors">O Clube</a>
+                    <a href="#leituras" class="hidden md:block font-sans hover:text-library-gold transition-colors">Leituras</a>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                        <i data-lucide="moon" class="hidden dark:block h-5 w-5"></i>
+                        <i data-lucide="sun" class="block dark:hidden h-5 w-5 text-orange-500"></i>
+                    </button>
+                    <a href="https://www.instagram.com/clube_do_livro_eepjp/" target="_blank" class="bg-library-gold hover:bg-yellow-600 text-white px-5 py-2 rounded-full font-bold transition-transform hover:scale-105 shadow-lg shadow-yellow-500/20">
+                        Participar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section com Parallax -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Imagem de fundo Parallax -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1507842217121-9e962835ad6e?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Biblioteca Antiga" 
+                 class="w-full h-full object-cover opacity-30 dark:opacity-40 scale-110"
+                 style="transform: translateY(0);"
+                 id="parallax-bg">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-100 dark:to-library-darker"></div>
+        </div>
+
+        <!-- Conteúdo Hero -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-8 reveal active">
+            <div class="inline-block border border-library-gold/50 px-4 py-1 rounded-full text-sm font-sans tracking-[0.2em] text-library-gold mb-4 backdrop-blur-sm">
+                ESCOLA ESTADUAL PROFESSOR JOÃO PINHEIRO
+            </div>
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-2xl">
+                Explore Novos<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-library-gold to-yellow-200">Mundos</span>
+            </h1>
+            <p class="font-serif text-lg md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto italic">
+                "Um livro é um sonho que você segura na mão."
+            </p>
+            <div class="pt-8">
+                <a href="#leituras" class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-library-gold transition duration-300 ease-out border-2 border-library-gold rounded-full shadow-md">
+                    <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-library-gold group-hover:translate-x-0 ease">
+                        <i data-lucide="arrow-down" class="w-6 h-6"></i>
+                    </span>
+                    <span class="absolute flex items-center justify-center w-full h-full text-library-gold transition-all duration-300 transform group-hover:translate-x-full ease">Ver Livros</span>
+                    <span class="relative invisible">Ver Livros</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Decoração animada -->
+        <div id="particles-container" class="absolute inset-0 pointer-events-none z-0"></div>
+    </header>
+
+    <!-- Sobre o Clube -->
+    <section id="sobre" class="py-24 relative bg-white dark:bg-library-darker border-t border-gray-200 dark:border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 reveal">
+                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Grupo lendo" 
+                         class="rounded-lg shadow-2xl dark:shadow-library-gold/10 grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="w-full md:w-1/2 space-y-6 reveal">
+                    <h2 class="font-display text-4xl text-library-gold">Nossa Comunidade</h2>
+                    <p class="font-sans text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                        O Clube do Livro da EEPJP é um espaço de refúgio e expansão. Aqui, a leitura deixa de ser uma obrigação solitária e se torna uma jornada compartilhada. Discutimos clássicos, descobrimos o contemporâneo e fortalecemos laços através das páginas.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="border-l-2 border-library-gold pl-4">
+                            <span class="block text-3xl font-bold font-display">Semanal</span>
+                            <span class="text-sm uppercase tracking-wider text-gray-500">Encontros</span>
+                        </div>
+                        <div class="border-l-2 border-library-gold pl-4">
+                            <span class="block text-3xl font-bold font-display">+50</span>
+                            <span class="text-sm uppercase tracking-wider text-gray-500">Alunos Leitores</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁREA DE ROLAGEM MÁGICA: A BIBLIOTECA -->
+    <!-- Este container tem 500vh de altura para permitir bastante espaço de scroll -->
+    <div id="leituras" class="relative h-[500vh] bg-gray-100 dark:bg-[#050a14]">
+        
+        <!-- Sticky Wrapper: Este div fica fixo na tela enquanto o pai rola -->
+        <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
+            
+            <!-- Título da Seção que fica fixo -->
+            <div class="absolute top-24 left-0 w-full text-center z-20">
+                <h2 class="font-display text-3xl md:text-5xl text-library-gold drop-shadow-lg bg-gray-100/80 dark:bg-[#050a14]/80 inline-block px-6 py-2 rounded-full backdrop-blur-sm">
+                    Clássicos Brasileiros
+                </h2>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Continue descendo para explorar</p>
+            </div>
+
+            <!-- Container onde os livros vão passar -->
+            <div class="relative w-full max-w-6xl mx-auto px-4 h-[60vh] flex items-center justify-center perspective-container">
+                
+                <!-- Livro 1 -->
+                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="0">
+                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
+                        <div class="absolute inset-0 bg-library-gold/20 transform rotate-3 rounded-r-md"></div>
+                        <img src="https://m.media-amazon.com/images/I/71X3-m+g+XL._AC_UF1000,1000_QL80_.jpg" 
+                             alt="Dom Casmurro" 
+                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
+                    </div>
+                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
+                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Machado de Assis</span>
+                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">Dom Casmurro</h3>
+                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"Olhos de ressaca..."</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
+                            A obra-prima da ambiguidade. Bentinho, Capitu e a eterna dúvida: houve ou não traição? Uma análise profunda do ciúme e da sociedade carioca do século XIX.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Livro 2 -->
+                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="1">
+                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
+                         <div class="absolute inset-0 bg-red-900/20 transform rotate-3 rounded-r-md"></div>
+                        <img src="https://m.media-amazon.com/images/I/81Wm7e+x+2L._AC_UF1000,1000_QL80_.jpg" 
+                             alt="Grande Sertão: Veredas" 
+                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
+                    </div>
+                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
+                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Guimarães Rosa</span>
+                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">Grande Sertão: Veredas</h3>
+                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"O correr da vida embrulha tudo."</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
+                            Uma travessia épica pelo sertão mineiro. Riobaldo narra suas aventuras, seus medos e seu amor proibido por Diadorim. Uma revolução na linguagem literária.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Livro 3 -->
+                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="2">
+                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
+                        <div class="absolute inset-0 bg-blue-900/20 transform rotate-3 rounded-r-md"></div>
+                        <img src="https://m.media-amazon.com/images/I/81vR11-eRPL._AC_UF1000,1000_QL80_.jpg" 
+                             alt="A Hora da Estrela" 
+                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
+                    </div>
+                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
+                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Clarice Lispector</span>
+                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">A Hora da Estrela</h3>
+                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"Tudo no mundo começou com um sim."</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
+                            A história de Macabéa, uma nordestina ingênua no Rio de Janeiro, narrada por um escritor que questiona sua própria existência. Toca na alma da invisibilidade social.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Livro 4 -->
+                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="3">
+                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
+                        <div class="absolute inset-0 bg-yellow-900/20 transform rotate-3 rounded-r-md"></div>
+                        <img src="https://m.media-amazon.com/images/I/81xU-J3-eLL._AC_UF1000,1000_QL80_.jpg" 
+                             alt="Capitães da Areia" 
+                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
+                    </div>
+                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
+                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Jorge Amado</span>
+                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">Capitães da Areia</h3>
+                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"A liberdade é como o sol: o bem maior do mundo."</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
+                            A vida crua e poética de um grupo de meninos de rua em Salvador. Pedro Bala e seus companheiros mostram a face da desigualdade e da solidariedade.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Livro 5 -->
+                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="4">
+                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
+                        <div class="absolute inset-0 bg-green-900/20 transform rotate-3 rounded-r-md"></div>
+                        <img src="https://m.media-amazon.com/images/I/81ZXbW9m+yL._AC_UF1000,1000_QL80_.jpg" 
+                             alt="O Cortiço" 
+                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
+                    </div>
+                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
+                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Aluísio Azevedo</span>
+                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">O Cortiço</h3>
+                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"A natureza humana em sua forma bruta."</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
+                            O naturalismo brasileiro em seu auge. O cortiço não é apenas o cenário, mas o protagonista vivo que molda, corrompe e transforma seus moradores.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Indicador de progresso -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-64 h-1 bg-gray-300 dark:bg-gray-800 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-library-gold transition-all duration-100 w-0"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Final -->
+    <section class="py-24 bg-white dark:bg-library-darker text-center px-4">
+        <div class="max-w-3xl mx-auto space-y-8 reveal">
+            <i data-lucide="feather" class="w-12 h-12 text-library-gold mx-auto"></i>
+            <h2 class="font-display text-4xl md:text-5xl text-gray-900 dark:text-white">Sua jornada começa agora</h2>
+            <p class="font-sans text-lg text-gray-600 dark:text-gray-400">
+                Não deixe para depois a história que pode mudar sua vida hoje. Junte-se ao nosso clube na escola e nas redes sociais.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 pt-6">
+                <a href="https://www.instagram.com/clube_do_livro_eepjp/" target="_blank" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-lg font-bold hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:-translate-y-1">
+                    <i data-lucide="instagram"></i>
+                    Siga no Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-[#02040a] border-t border-gray-200 dark:border-white/5 py-12">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-500">
+            <p>&copy; 2024 Clube do Livro EEPJP. Todos os direitos reservados.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <span class="font-display">Ler é resistir.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // --- Dark Mode Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check local storage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // --- Parallax Effect Hero ---
+        const parallaxBg = document.getElementById('parallax-bg');
+        window.addEventListener('scroll', () => {
+            let offset = window.pageYOffset;
+            if(offset < window.innerHeight) {
+                parallaxBg.style.transform = `translateY(${offset * 0.5}px)`;
+            }
+        });
+
+        // --- Scroll Reveal Logic (Elementos entrando na tela) ---
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+
+        // --- LÓGICA DA ANIMAÇÃO DE LIVROS (Horizontal Scroll baseada em Scroll Vertical) ---
+        const scrollSection = document.getElementById('leituras');
+        const slides = document.querySelectorAll('.book-slide');
+        const progressBar = document.getElementById('progress-bar');
+        const totalSlides = slides.length;
+
+        window.addEventListener('scroll', () => {
+            const sectionTop = scrollSection.offsetTop;
+            const sectionHeight = scrollSection.offsetHeight;
+            const scrollY = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+
+            // Calcular o progresso dentro da seção de leituras (0 a 1)
+            // Subtraímos um pouco do windowHeight para começar a animação quando a seção bate no topo
+            let progress = (scrollY - sectionTop) / (sectionHeight - windowHeight);
+            
+            // Limitar progresso entre 0 e 1
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Atualizar barra de progresso visual
+            progressBar.style.width = `${progress * 100}%`;
+
+            // Calcular qual slide deve estar ativo
+            // Mapeamos o progresso (0 a 1) para o número de slides
+            // Usamos um fator de 'overlap' para transições suaves
+            
+            const partPerSlide = 1 / totalSlides;
+
+            slides.forEach((slide, index) => {
+                // Início e fim do tempo deste slide específico na timeline do scroll
+                const slideStart = partPerSlide * index;
+                const slideEnd = slideStart + partPerSlide;
+                
+                // Verificar estado do slide
+                if (progress < slideStart - 0.05) {
+                    // Slide ainda não chegou (fica à direita, fora da tela ou esperando para entrar)
+                    // Mas a lógica pede da esquerda pra direita, fade out direita.
+                    // Vamos ajustar:
+                    // Estado inicial (antes de aparecer): Esquerda (translateX(-100vw))
+                    slide.style.transform = `translateX(-100vw) scale(0.8)`;
+                    slide.style.opacity = '0';
+                    slide.style.zIndex = '0';
+                } 
+                else if (progress >= slideStart && progress <= slideEnd) {
+                    // Slide ATIVO (no centro)
+                    // Calcular "sub-progresso" dentro deste slide para efeitos finos
+                    const localProgress = (progress - slideStart) / partPerSlide;
+                    
+                    // Entra da esquerda e para no meio
+                    // Se localProgress for 0 (inicio), ele vem da esquerda.
+                    // Se for 0.1 a 0.8, ele fica parado no centro.
+                    // Se for 0.9 a 1.0, ele começa a sair pra direita.
+                    
+                    if (localProgress < 0.2) {
+                        // Fase de entrada (Left -> Center)
+                        const enterProg = localProgress / 0.2; // 0 a 1
+                        slide.style.transform = `translateX(${-100 + (enterProg * 100)}vw) scale(${0.8 + (0.2 * enterProg)})`;
+                        slide.style.opacity = `${enterProg}`;
+                    } else if (localProgress > 0.8) {
+                        // Fase de saída (Center -> Right)
+                        const exitProg = (localProgress - 0.8) / 0.2; // 0 a 1
+                        slide.style.transform = `translateX(${exitProg * 100}vw) scale(${1 - (0.2 * exitProg)})`;
+                        slide.style.opacity = `${1 - exitProg}`;
+                    } else {
+                        // Fase Estática (Leitura)
+                        slide.style.transform = `translateX(0) scale(1)`;
+                        slide.style.opacity = '1';
+                    }
+                    slide.style.zIndex = '10';
+                } 
+                else if (progress > slideEnd) {
+                    // Slide já passou (vai para a direita)
+                    slide.style.transform = `translateX(100vw) scale(0.8)`;
+                    slide.style.opacity = '0';
+                    slide.style.zIndex = '0';
+                }
+            });
+        });
+
+        // --- Partículas Background ---
+        const particlesContainer = document.getElementById('particles-container');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `100vh`;
+            
+            const duration = Math.random() * 10 + 5;
+            particle.style.animationDuration = `${duration}s`;
+            
+            particlesContainer.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createParticle, 500);
+
+    </script>
+</body>
+</html>
