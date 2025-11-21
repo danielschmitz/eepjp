@@ -212,13 +212,12 @@
     </section>
 
     <!-- ÁREA DE ROLAGEM MÁGICA: A BIBLIOTECA -->
-    <!-- Este container tem 500vh de altura para permitir bastante espaço de scroll -->
     <div id="leituras" class="relative h-[500vh] bg-gray-100 dark:bg-[#050a14]">
         
-        <!-- Sticky Wrapper: Este div fica fixo na tela enquanto o pai rola -->
+        <!-- Sticky Wrapper -->
         <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
             
-            <!-- Título da Seção que fica fixo -->
+            <!-- Título da Seção -->
             <div class="absolute top-24 left-0 w-full text-center z-20">
                 <h2 class="font-display text-3xl md:text-5xl text-library-gold drop-shadow-lg bg-gray-100/80 dark:bg-[#050a14]/80 inline-block px-6 py-2 rounded-full backdrop-blur-sm">
                     Clássicos Brasileiros
@@ -226,130 +225,61 @@
                 <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Continue descendo para explorar</p>
             </div>
 
-            <!-- Container onde os livros vão passar -->
-            <div class="relative w-full max-w-6xl mx-auto px-4 h-[60vh] flex items-center justify-center perspective-container">
-                
-                <!-- Livro 1: Dom Casmurro -->
-                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="0">
-                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
-                        <div class="absolute inset-0 bg-library-gold/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://covers.openlibrary.org/b/isbn/9788525406798-L.jpg" 
-                             alt="Dom Casmurro" 
-                             referrerpolicy="no-referrer"
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=Dom+Casmurro';"
-                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
-                    </div>
-                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
-                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Machado de Assis</span>
-                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">Dom Casmurro</h3>
-                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"Olhos de ressaca..."</p>
-                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
-                            A obra-prima da ambiguidade. Bentinho, Capitu e a eterna dúvida: houve ou não traição? Uma análise profunda do ciúme e da sociedade carioca do século XIX.
-                        </p>
-                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
-                            Fonte da imagem: Open Library API (Ed. L&PM)
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Livro 2: Grande Sertão -->
-                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="1">
-                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
-                         <div class="absolute inset-0 bg-red-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://covers.openlibrary.org/b/isbn/9788535931983-L.jpg" 
-                             alt="Grande Sertão: Veredas" 
-                             referrerpolicy="no-referrer"
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=Grande+Sertao';"
-                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
-                    </div>
-                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
-                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Guimarães Rosa</span>
-                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">Grande Sertão: Veredas</h3>
-                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"O correr da vida embrulha tudo."</p>
-                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
-                            Uma travessia épica pelo sertão mineiro. Riobaldo narra suas aventuras, seus medos e seu amor proibido por Diadorim. Uma revolução na linguagem literária.
-                        </p>
-                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
-                            Fonte da imagem: Open Library API (Ed. Cia das Letras)
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Livro 3: A Hora da Estrela -->
-                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="2">
-                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
-                        <div class="absolute inset-0 bg-blue-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://livrariapublica.com.br/capa/a-hora-da-estrela-clarice-lispector-pdf-B08MWKVD5T.webp" 
-                             alt="A Hora da Estrela" 
-                             referrerpolicy="no-referrer"
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=A+Hora+da+Estrela';"
-                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
-                    </div>
-                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
-                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Clarice Lispector</span>
-                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">A Hora da Estrela</h3>
-                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"Tudo no mundo começou com um sim."</p>
-                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
-                            A história de Macabéa, uma nordestina ingênua no Rio de Janeiro, narrada por um escritor que questiona sua própria existência. Toca na alma da invisibilidade social.
-                        </p>
-                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
-                            Fonte da imagem: Open Library API (Ed. Rocco)
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Livro 4: Capitães da Areia -->
-                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="3">
-                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
-                        <div class="absolute inset-0 bg-yellow-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://martinsfontespaulista.vteximg.com.br/arquivos/ids/1446403-1000-1000/508432.jpg?v=638461306949100000" 
-                             alt="Capitães da Areia" 
-                             referrerpolicy="no-referrer"
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=Capitaes+da+Areia';"
-                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
-                    </div>
-                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
-                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Jorge Amado</span>
-                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">Capitães da Areia</h3>
-                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"A liberdade é como o sol: o bem maior do mundo."</p>
-                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
-                            A vida crua e poética de um grupo de meninos de rua em Salvador. Pedro Bala e seus companheiros mostram a face da desigualdade e da solidariedade.
-                        </p>
-                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
-                            Fonte da imagem: Open Library API (Ed. Cia de Bolso)
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Livro 5: O Cortiço -->
-                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="4">
-                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
-                        <div class="absolute inset-0 bg-green-900/20 transform rotate-3 rounded-r-md"></div>
-                        <img src="https://storage.googleapis.com/images.uiclap.com/capa/ua66853.jpg" 
-                             alt="O Cortiço" 
-                             referrerpolicy="no-referrer"
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/320x500/3e2723/d4af37?text=O+Cortico';"
-                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
-                    </div>
-                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
-                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">Aluísio Azevedo</span>
-                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">O Cortiço</h3>
-                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">"A natureza humana em sua forma bruta."</p>
-                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
-                            O naturalismo brasileiro em seu auge. O cortiço não é apenas o cenário, mas o protagonista vivo que molda, corrompe e transforma seus moradores.
-                        </p>
-                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
-                            Fonte da imagem: Open Library API (Ed. Ática)
-                        </p>
-                    </div>
-                </div>
-
+            <!-- Container onde os livros serão injetados via JS -->
+            <div class="relative w-full max-w-6xl mx-auto px-4 h-[60vh] flex items-center justify-center perspective-container" id="books-container">
+                <!-- O conteúdo será gerado dinamicamente pelo script abaixo -->
             </div>
 
             <!-- Indicador de progresso -->
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-64 h-1 bg-gray-300 dark:bg-gray-800 rounded-full overflow-hidden">
                 <div id="progress-bar" class="h-full bg-library-gold transition-all duration-100 w-0"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- NOVA SEÇÃO: EFEITO DE PAPEL RASGADO COM PARALLAX -->
+    <div class="relative w-full z-20 bg-transparent">
+        
+        <!-- Borda Rasgada Superior -->
+        <div class="absolute top-0 left-0 w-full h-16 md:h-24 z-10 transform -translate-y-[98%]">
+            <svg class="w-full h-full text-gray-100 dark:text-[#050a14] fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" opacity=".25"/>
+                <path d="M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z" opacity=".5"/>
+                <path d="M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" />
+            </svg>
+        </div>
+
+        <!-- Container Parallax (O "Buraco") -->
+        <div class="relative h-[80vh] bg-fixed bg-center bg-cover bg-no-repeat flex items-center justify-center group"
+             style="background-image: url('https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2015&auto=format&fit=crop');">
+             
+             <div class="absolute inset-0 bg-black/60 transition-opacity duration-700 group-hover:bg-black/40"></div>
+             
+             <div class="relative z-20 text-center px-4 reveal max-w-4xl mx-auto">
+                 <div class="mb-6 inline-block">
+                     <i data-lucide="library" class="w-16 h-16 text-white/80 mx-auto mb-4 animate-pulse"></i>
+                 </div>
+                 <h3 class="font-display text-4xl md:text-7xl text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] mb-6 tracking-wider">
+                     A Biblioteca Infinita
+                 </h3>
+                 <p class="font-serif text-xl md:text-3xl text-gray-200 italic leading-relaxed drop-shadow-md">
+                     "Existem mundos inteiros escondidos nas dobras do papel."
+                 </p>
+                 <div class="mt-12">
+                     <span class="inline-block px-8 py-3 border border-white/30 text-white/80 font-sans text-sm tracking-[0.3em] uppercase backdrop-blur-sm rounded-sm hover:bg-white/10 transition-colors cursor-default">
+                         EEPJP Archive
+                     </span>
+                 </div>
+             </div>
+        </div>
+
+        <!-- Borda Rasgada Inferior -->
+        <div class="absolute bottom-0 left-0 w-full h-16 md:h-24 z-10 transform translate-y-[98%]">
+            <svg class="w-full h-full text-white dark:text-library-darker fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1200 120v-46.29c-47.79-22.2-103.59-32.17-158-28-70.36 5.37-136.33 33.31-206.8 37.5-73.84 4.36-147.54-16.88-218.2-35.26-69.27-18-138.3-24.88-209.4-13.08-36.15 6-69.85 17.84-104.45 29.34C210.51 95 87 134.29 0 67.53V120z" opacity=".25"/>
+                <path d="M1200 120v-15.81c-13-21.11-27.64-41.05-47.69-56.24C1100.59 8.73 1035 9 975.42 28.42c-31.15 10.15-60.09 26.07-89.67 39.8-40.92 19-84.73 46-130.83 49.67-36.26 2.85-70.9-9.42-98.6-31.56-31.77-25.39-62.32-62-103.63-73-40.44-10.79-81.35 6.69-119.13 24.28-37.78 17.59-75.16 39-116.92 43.05-59.73 5.85-113.28-22.88-168.9-38.84-30.2-8.66-59-6.17-87.09 7.5-22.43 10.89-48 26.93-60.65 49.24V120z" opacity=".5"/>
+                <path d="M1200 120v-5.63c-149.93-53.37-314.09-65.69-475.83-36.94-43 7.64-84.23 20.12-127.61 26.46-59 8.63-112.48-12.24-165.56-35.4C372.07 42.78 314 24.76 248.8 30c-86.53 7-172.46 45.71-248.8 84.81V120z" />
+            </svg>
         </div>
     </div>
 
@@ -384,6 +314,106 @@
     </footer>
 
     <script>
+        // --- DADOS DOS LIVROS (JSON) ---
+        const booksData = [
+            {
+                id: 1,
+                title: "Dom Casmurro",
+                author: "Machado de Assis",
+                coverUrl: "https://covers.openlibrary.org/b/isbn/9788525406798-L.jpg",
+                coverAlt: "Capa do livro Dom Casmurro",
+                quote: '"Olhos de ressaca..."',
+                description: "A obra-prima da ambiguidade. Bentinho, Capitu e a eterna dúvida: houve ou não traição? Uma análise profunda do ciúme e da sociedade carioca do século XIX.",
+                footerSource: "Fonte da imagem: Open Library API (Ed. L&PM)",
+                bgAccent: "bg-library-gold/20"
+            },
+            {
+                id: 2,
+                title: "Grande Sertão: Veredas",
+                author: "Guimarães Rosa",
+                coverUrl: "https://covers.openlibrary.org/b/isbn/9788535931983-L.jpg",
+                coverAlt: "Capa do livro Grande Sertão: Veredas",
+                quote: '"O correr da vida embrulha tudo."',
+                description: "Uma travessia épica pelo sertão mineiro. Riobaldo narra suas aventuras, seus medos e seu amor proibido por Diadorim. Uma revolução na linguagem literária.",
+                footerSource: "Fonte da imagem: Open Library API (Ed. Cia das Letras)",
+                bgAccent: "bg-red-900/20"
+            },
+            {
+                id: 3,
+                title: "A Hora da Estrela",
+                author: "Clarice Lispector",
+                coverUrl: "https://covers.openlibrary.org/b/isbn/9788532508126-L.jpg",
+                coverAlt: "Capa do livro A Hora da Estrela",
+                quote: '"Tudo no mundo começou com um sim."',
+                description: "A história de Macabéa, uma nordestina ingênua no Rio de Janeiro, narrada por um escritor que questiona sua própria existência. Toca na alma da invisibilidade social.",
+                footerSource: "Fonte da imagem: Open Library API (Ed. Rocco)",
+                bgAccent: "bg-blue-900/20"
+            },
+            {
+                id: 4,
+                title: "Capitães da Areia",
+                author: "Jorge Amado",
+                coverUrl: "https://covers.openlibrary.org/b/isbn/9788535914061-L.jpg",
+                coverAlt: "Capa do livro Capitães da Areia",
+                quote: '"A liberdade é como o sol: o bem maior do mundo."',
+                description: "A vida crua e poética de um grupo de meninos de rua em Salvador. Pedro Bala e seus companheiros mostram a face da desigualdade e da solidariedade.",
+                footerSource: "Fonte da imagem: Open Library API (Ed. Cia de Bolso)",
+                bgAccent: "bg-yellow-900/20"
+            },
+            {
+                id: 5,
+                title: "O Cortiço",
+                author: "Aluísio Azevedo",
+                coverUrl: "https://covers.openlibrary.org/b/isbn/9788508145621-L.jpg",
+                coverAlt: "Capa do livro O Cortiço",
+                quote: '"A natureza humana em sua forma bruta."',
+                description: "O naturalismo brasileiro em seu auge. O cortiço não é apenas o cenário, mas o protagonista vivo que molda, corrompe e transforma seus moradores.",
+                footerSource: "Fonte da imagem: Open Library API (Ed. Ática)",
+                bgAccent: "bg-green-900/20"
+            }
+        ];
+
+        // --- RENDERIZAÇÃO DOS LIVROS ---
+        const booksContainer = document.getElementById('books-container');
+
+        function renderBooks() {
+            booksContainer.innerHTML = ''; // Limpa o container
+            booksData.forEach((book, index) => {
+                // Fallback image logic embedded in HTML string for simplicity via onerror
+                const fallbackImage = `https://via.placeholder.com/320x500/3e2723/d4af37?text=${encodeURIComponent(book.title)}`;
+                
+                const bookHtml = `
+                <div class="book-slide absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 translate-x-[100vw]" data-index="${index}">
+                    <div class="w-64 h-96 md:w-80 md:h-[500px] flex-shrink-0 book-card relative group">
+                        <div class="absolute inset-0 ${book.bgAccent} transform rotate-3 rounded-r-md"></div>
+                        <img src="${book.coverUrl}" 
+                             alt="${book.coverAlt}" 
+                             referrerpolicy="no-referrer"
+                             onerror="this.onerror=null;this.src='${fallbackImage}';"
+                             class="w-full h-full object-cover rounded-r-md shadow-2xl book-cover border-l-4 border-gray-800 relative z-10">
+                    </div>
+                    <div class="max-w-md text-center md:text-left bg-white/90 dark:bg-black/80 p-6 rounded-lg backdrop-blur-sm shadow-xl border border-library-gold/30">
+                        <span class="text-library-gold font-bold tracking-widest text-xs uppercase">${book.author}</span>
+                        <h3 class="font-display text-4xl mb-4 text-gray-900 dark:text-white">${book.title}</h3>
+                        <p class="font-serif italic text-gray-600 dark:text-gray-300 mb-4">${book.quote}</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-700 dark:text-gray-400">
+                            ${book.description}
+                        </p>
+                        <p class="text-[10px] text-gray-400 mt-4 border-t border-gray-300 dark:border-gray-700 pt-2">
+                            ${book.footerSource}
+                        </p>
+                    </div>
+                </div>
+                `;
+                booksContainer.insertAdjacentHTML('beforeend', bookHtml);
+            });
+        }
+
+        // Chama a renderização antes de tudo
+        renderBooks();
+
+        // --- LÓGICA DO SITE ---
+
         // Inicializar ícones
         lucide.createIcons();
 
@@ -431,6 +461,7 @@
 
         // --- LÓGICA DA ANIMAÇÃO DE LIVROS (Horizontal Scroll baseada em Scroll Vertical) ---
         const scrollSection = document.getElementById('leituras');
+        // IMPORTANTE: Selecionar os slides DEPOIS de renderizá-los
         const slides = document.querySelectorAll('.book-slide');
         const progressBar = document.getElementById('progress-bar');
         const totalSlides = slides.length;
@@ -442,7 +473,6 @@
             const windowHeight = window.innerHeight;
 
             // Calcular o progresso dentro da seção de leituras (0 a 1)
-            // Subtraímos um pouco do windowHeight para começar a animação quando a seção bate no topo
             let progress = (scrollY - sectionTop) / (sectionHeight - windowHeight);
             
             // Limitar progresso entre 0 e 1
@@ -452,55 +482,35 @@
             progressBar.style.width = `${progress * 100}%`;
 
             // Calcular qual slide deve estar ativo
-            // Mapeamos o progresso (0 a 1) para o número de slides
-            // Usamos um fator de 'overlap' para transições suaves
-            
             const partPerSlide = 1 / totalSlides;
 
             slides.forEach((slide, index) => {
-                // Início e fim do tempo deste slide específico na timeline do scroll
                 const slideStart = partPerSlide * index;
                 const slideEnd = slideStart + partPerSlide;
                 
-                // Verificar estado do slide
                 if (progress < slideStart - 0.05) {
-                    // Slide ainda não chegou (fica à direita, fora da tela ou esperando para entrar)
-                    // Mas a lógica pede da esquerda pra direita, fade out direita.
-                    // Vamos ajustar:
-                    // Estado inicial (antes de aparecer): Esquerda (translateX(-100vw))
                     slide.style.transform = `translateX(-100vw) scale(0.8)`;
                     slide.style.opacity = '0';
                     slide.style.zIndex = '0';
                 } 
                 else if (progress >= slideStart && progress <= slideEnd) {
-                    // Slide ATIVO (no centro)
-                    // Calcular "sub-progresso" dentro deste slide para efeitos finos
                     const localProgress = (progress - slideStart) / partPerSlide;
                     
-                    // Entra da esquerda e para no meio
-                    // Se localProgress for 0 (inicio), ele vem da esquerda.
-                    // Se for 0.1 a 0.8, ele fica parado no centro.
-                    // Se for 0.9 a 1.0, ele começa a sair pra direita.
-                    
                     if (localProgress < 0.2) {
-                        // Fase de entrada (Left -> Center)
-                        const enterProg = localProgress / 0.2; // 0 a 1
+                        const enterProg = localProgress / 0.2; 
                         slide.style.transform = `translateX(${-100 + (enterProg * 100)}vw) scale(${0.8 + (0.2 * enterProg)})`;
                         slide.style.opacity = `${enterProg}`;
                     } else if (localProgress > 0.8) {
-                        // Fase de saída (Center -> Right)
-                        const exitProg = (localProgress - 0.8) / 0.2; // 0 a 1
+                        const exitProg = (localProgress - 0.8) / 0.2; 
                         slide.style.transform = `translateX(${exitProg * 100}vw) scale(${1 - (0.2 * exitProg)})`;
                         slide.style.opacity = `${1 - exitProg}`;
                     } else {
-                        // Fase Estática (Leitura)
                         slide.style.transform = `translateX(0) scale(1)`;
                         slide.style.opacity = '1';
                     }
                     slide.style.zIndex = '10';
                 } 
                 else if (progress > slideEnd) {
-                    // Slide já passou (vai para a direita)
                     slide.style.transform = `translateX(100vw) scale(0.8)`;
                     slide.style.opacity = '0';
                     slide.style.zIndex = '0';
