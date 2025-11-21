@@ -163,6 +163,13 @@
 
         <!-- Conteúdo Hero -->
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-8 reveal active">
+            <!-- LOGO PRINCIPAL -->
+            <div class="flex justify-center mb-8">
+                <img src="./logo.png" 
+                     alt="Logo Clube do Livro Entre Páginas" 
+                     class="h-32 w-auto md:h-48 transition-transform duration-700 transform hover:scale-105 drop-shadow-xl">
+            </div>
+
             <div class="inline-block border border-library-gold/50 px-4 py-1 rounded-full text-sm font-sans tracking-[0.2em] text-library-gold mb-4 backdrop-blur-sm">
                 ESCOLA ESTADUAL PROFESSOR JOÃO PINHEIRO
             </div>
@@ -284,8 +291,13 @@
     </div>
 
     <!-- CTA Final -->
-    <section class="py-24 bg-white dark:bg-library-darker text-center px-4">
-        <div class="max-w-3xl mx-auto space-y-8 reveal">
+    <section class="py-24 bg-white dark:bg-library-darker text-center px-4 relative overflow-hidden">
+        <!-- Logo como fundo transparente -->
+        <div class="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+             style="background-image: url('./logo.png'); background-position: center; background-size: 50%; background-repeat: no-repeat;">
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-8 reveal relative z-10">
             <i data-lucide="feather" class="w-12 h-12 text-library-gold mx-auto"></i>
             <h2 class="font-display text-4xl md:text-5xl text-gray-900 dark:text-white">Sua jornada começa agora</h2>
             <p class="font-sans text-lg text-gray-600 dark:text-gray-400">
